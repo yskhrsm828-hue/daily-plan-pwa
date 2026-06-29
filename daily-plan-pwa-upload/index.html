@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#DDEDE5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="每日计划" />
+    <title>每日计划</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div class="date-title-row">
+          <p id="dateLabel" class="date-label"></p>
+          <div class="date-actions">
+            <button type="button" id="openDatePicker" class="calendar-button" aria-label="选择日期">📅</button>
+            <input id="datePicker" class="date-picker" type="date" aria-label="选择日期" />
+            <button type="button" id="todayButton" class="today-button" hidden>回到今天</button>
+            <span class="top-flower" aria-label="小红花数量">🌸 <span id="flowerCount">0</span>朵</span>
+          </div>
+        </div>
+      </header>
+      <p id="weatherLine" class="weather-line">东广岛 天气读取中...</p>
+      <span class="flower-burst" id="flowerBurst" aria-hidden="true">🌸</span>
+
+      <main class="layout">
+        <section class="panel tomorrow-prep">
+          <button type="button" id="togglePrep" class="collapse-button prep-toggle" aria-expanded="true">
+            <span>明日准备</span>
+            <span id="prepCount" class="muted-count">0</span>
+          </button>
+          <div id="prepPanel" class="prep-panel">
+            <div id="prepList" class="prep-list empty-state"></div>
+            <button type="button" id="togglePrepMore" class="prep-more" hidden>展开全部</button>
+            <form id="prepForm" class="prep-form">
+              <input id="prepText" type="text" placeholder="例如：收拾书包" />
+              <button type="submit" class="ghost-button">添加</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <h2>待办事项</h2>
+            <span id="todoCount" class="pill">0</span>
+          </div>
+          <div id="todoList" class="task-list empty-state"></div>
+        </section>
+
+        <section class="panel completed-panel">
+          <button type="button" id="toggleCompleted" class="collapse-button" aria-expanded="true">
+            <span>已完成事项</span>
+            <span><strong id="doneCount">0</strong> 件</span>
+          </button>
+          <div id="completedList" class="task-list completed-list empty-state"></div>
+        </section>
+
+        <section class="panel daily-reflection">
+          <div class="section-heading">
+            <h2>今日一句</h2>
+          </div>
+          <button type="button" id="dailyFeelingDisplay" class="feeling-display">今天完成一点点也很好。</button>
+          <label id="dailyFeelingEditor" class="feeling-editor" hidden>
+            <span class="sr-only">今日感想</span>
+            <textarea id="dailyFeeling" rows="2" placeholder="今天完成一点点也很好。"></textarea>
+          </label>
+        </section>
+
+        <section class="panel task-controls">
+          <div class="section-heading">
+            <h2>添加任务</h2>
+            <div class="heading-actions">
+              <button type="button" id="openTemplate" class="ghost-button">编辑模板</button>
+            </div>
+          </div>
+          <form id="taskForm" class="task-form">
+            <label>
+              <span>时间</span>
+              <input id="taskTime" type="time" required />
+            </label>
+            <label class="task-content-field">
+              <span>任务内容</span>
+              <input id="taskText" type="text" placeholder="例如：整理申请材料" required />
+            </label>
+            <button type="submit" class="primary-button">添加任务</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="templateDialog" class="template-dialog">
+      <form method="dialog" class="dialog-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Template</p>
+            <h2>编辑默认模板</h2>
+          </div>
+          <button type="submit" class="icon-button" aria-label="关闭">×</button>
+        </div>
+        <p class="dialog-help">每行一个任务，格式：时间 空格 内容。新的一天第一次打开时会自动复制这里的模板。</p>
+        <textarea id="templateText" rows="11"></textarea>
+        <div class="dialog-actions">
+          <button type="button" id="resetTemplate" class="ghost-button">恢复默认</button>
+          <button type="button" id="saveTemplate" class="primary-button">保存模板</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>

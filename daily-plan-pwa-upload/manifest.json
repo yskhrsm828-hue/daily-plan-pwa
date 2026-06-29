@@ -1,0 +1,24 @@
+{
+  "name": "每日时间计划表",
+  "short_name": "每日计划",
+  "description": "适合 iPhone 主屏幕使用的每日时间计划表，按日期保存在 localStorage。",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F7FBF8",
+  "theme_color": "#DDEDE5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
